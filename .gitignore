@@ -1,0 +1,45 @@
+# ───────── Python Bytecode ─────────
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ───────── Virtual Environments ─────────
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ───────── Environment Files ─────────
+.env
+.env.*.local
+
+# ───────── IDE / Editor ─────────
+.vscode/
+*.code-workspace
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ───────── Test / Coverage ─────────
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# ───────── Type Checking / Linting ─────────
+.mypy_cache/
+.pylint.d/
+.ruff_cache/
+
+# ───────── Logs ─────────
+*.log
+logs/
+
+# ───────── OS / Misc ─────────
+.DS_Store
+Thumbs.db
+
+# ───────── Docker ─────────
+docker-compose.override.yml
