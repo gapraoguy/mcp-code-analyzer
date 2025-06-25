@@ -16,6 +16,7 @@ cachetools==5.5.2
 celery==5.3.5
 certifi==2025.6.15
 cfgv==3.4.0
+chardet==5.2.0
 charset-normalizer==3.4.2
 chroma-hnswlib==0.7.3
 chromadb==0.4.22

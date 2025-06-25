@@ -59,7 +59,7 @@ class Settings(BaseSettings):
 
     # Security
     secret_key: str = Field(
-        default="",
+        default="SECRET_KEY",
         env="SECRET_KEY"
     )
 

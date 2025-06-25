@@ -39,7 +39,7 @@ async def create_analysis(
     existing = await db.execute(stmt)
     if existing.scalar_one_or_none():
         raise HTTPException(
-            status_code=400, 
+            status_code=400,
             detail="Analysis already running for this project"
         )
     
@@ -149,3 +149,37 @@ async def cancel_analysis(
     # TODO: Cancel Celery task
     
     return {"message": "Analysis cancelled successfully"}
+
+@router.post("/{analysis_id}/analyze-file")
+async def analyze_single_file(
+    analysis_id: int,
+    file_path: str,
+    background_tasks: BackgroundTasks,
+    db: AsyncSession = Depends(get_db)
+) -> dict:
+    """
+    Analyze a single file within an analysis
+    """
+    # Get analysis
+    analysis = await db.get(Analysis, analysis_id)
+    if not analysis:
+        raise HTTPException(status_code=404, detail="Analysis not found")
+    
+    # Get project
+    project = await db.get(Project, analysis.project_id)
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+    
+    # Start file analysis task
+    from src.workers.tasks import analyze_file
+    background_tasks.add_task(
+        analyze_file.delay,
+        file_path=file_path,
+        project_id=project.id
+    )
+    
+    return {
+        "message": "File analysis started",
+        "analysis_id": analysis_id,
+        "file_path": file_path
+    }

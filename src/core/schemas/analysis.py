@@ -46,11 +46,13 @@ class AnalysisResponse(AnalysisInDB):
     """Schema for analysis API response"""
     duration_seconds: Optional[float] = None
 
-    @property
-    def duration_seconds(self) -> Optional[float]:
+    def __init__(self, **data):
+        super().__init__(**data)
+        # duration_secondsを計算
         if self.started_at and self.completed_at:
-            return (self.completed_at - self.started_at).total_seconds()
-        return None
+            self.duration_seconds = (self.completed_at - self.started_at).total_seconds()
+        else:
+            self.duration_seconds = None
 
 
 class AnalysisList(BaseModel):

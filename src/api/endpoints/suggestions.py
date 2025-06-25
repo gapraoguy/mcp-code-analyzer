@@ -41,7 +41,7 @@ async def suggest_error_fix(
         suggestion_type=SuggestionType.ERROR_FIX,
         title=f"Fix for: {request.error_message[:100]}...",
         description=f"Error: {request.error_message}",
-        metadata={
+        extra={
             "file_path": request.file_path,
             "line_number": request.line_number,
             "context_lines": request.context_lines
@@ -84,7 +84,7 @@ async def suggest_feature_implementation(
         suggestion_type=SuggestionType.FEATURE,
         title=f"Implementation: {request.feature_description[:100]}...",
         description=request.feature_description,
-        metadata={
+        extra={
             "target_file": request.target_file,
             "integration_points": request.integration_points,
             "constraints": request.constraints

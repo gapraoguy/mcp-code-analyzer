@@ -1,6 +1,5 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
-from src.api.endpoints import analyses
 from src.core.config import settings
 from src.core.database import init_db
 from src.api.endpoints import analyses, projects, suggestions
