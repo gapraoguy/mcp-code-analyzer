@@ -11,7 +11,7 @@ from src.analyzers.base import BaseAnalyzer, AnalysisResult, FileInfo
 
 logger = logging.getLogger(__name__)
 
-class PythonAnalyzer(BaseAnalyzer):
+class FileAnalyzer(BaseAnalyzer):
     """Analyzer for Python source code"""
 
     SUPPORTED_EXTENSIONS = {'.py', '.pyw'}
